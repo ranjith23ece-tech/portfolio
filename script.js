@@ -138,3 +138,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   animateParticles();
 });
+// ===== NAVIGATION FIX =====
+document.querySelectorAll('nav a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href');
+
+    if (targetId.startsWith("#")) {
+      e.preventDefault();
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }
+  });
+});
